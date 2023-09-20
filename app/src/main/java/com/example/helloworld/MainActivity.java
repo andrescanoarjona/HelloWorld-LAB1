@@ -7,7 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+    TextView tv;
+    int n = 0, aux, MIN =1 , MAX = 4;
+    Random RANDOM = new Random();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +22,29 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onBtChangeTextClick(View v)
     {
-        TextView tv = (TextView)findViewById(R.id.tv_main_label);
-        tv.setText("Welcome to android");
+        tv = (TextView)findViewById(R.id.tv_main_label);
+        ++n;
+
+        if(n<2)
+            tv.setText("1º LAB of Mobile Application Development Techniques.");
+        else
+            tv.setText("Is the "+n+"º time that you change the text");
+
     }
 
     public void onBtChangeColor(View v)
     {
-        TextView tv = (TextView)findViewById(R.id.tv_main_label);
-        tv.setTextColor(Color.LTGRAY);
+
+        aux = RANDOM.nextInt(MAX-MIN)+MIN;
+        tv = (TextView)findViewById(R.id.tv_main_label);
+
+        switch (aux){
+            case 1:tv.setTextColor(Color.LTGRAY); break;
+            case 2:tv.setTextColor(Color.YELLOW);break;
+            case 3:tv.setTextColor(Color.MAGENTA);break;
+            default:tv.setTextColor(Color.GREEN);
+
+        }
     }
 
 }
