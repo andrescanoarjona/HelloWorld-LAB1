@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv;
-    int n = 0, aux, MIN =1 , MAX = 4;
+    int n = 0, aux, MIN =1 , MAX = 5,MEM = 4;
     Random RANDOM = new Random();
 
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    @SuppressLint("SetTextI18n")
     public void onBtChangeTextClick(View v)
     {
         tv = (TextView)findViewById(R.id.tv_main_label);
@@ -35,14 +37,18 @@ public class MainActivity extends AppCompatActivity {
     public void onBtChangeColor(View v)
     {
 
-        aux = RANDOM.nextInt(MAX-MIN)+MIN;
+        do {
+            aux = RANDOM.nextInt(MAX - MIN) + MIN;
+        }while(MEM == aux);
+        MEM = aux;
+
         tv = (TextView)findViewById(R.id.tv_main_label);
 
         switch (aux){
-            case 1:tv.setTextColor(Color.LTGRAY); break;
-            case 2:tv.setTextColor(Color.YELLOW);break;
+            case 1:tv.setTextColor(Color.GREEN); break;
+            case 2:tv.setTextColor(Color.BLUE);break;
             case 3:tv.setTextColor(Color.MAGENTA);break;
-            default:tv.setTextColor(Color.GREEN);
+            default:tv.setTextColor(Color.BLACK);
 
         }
     }
